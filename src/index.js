@@ -1,6 +1,9 @@
 const pokemon = data[0]
 
-// <li class="card">
+for (let i = 0; i < data.length; i++) {
+  const pokemon = data[i]
+
+  // <li class="card">
 const listItem = document.createElement('li')
 listItem.classList.add('card')
 
@@ -21,19 +24,40 @@ image.setAttribute('src', pokemon.sprites.other["official-artwork"].front_defaul
 // append the image to the <li>
 listItem.append(image)
 
+// <ul class="card--text">
+const ulStats = document.createElement('ul')
+ulStats.classList.add('card--text')
+
+
+for (let i = 0; i < pokemon.stats.length; i++) {
+    const container = pokemon.stats.map(item => `${item.stat.name}: ${item.base_stat}`)
+    
+    const listStats = document.createElement('li')
+    listStats.innerText = container[i]
+    ulStats.append(listStats)
+    listStats.style.listStyle = 'none'
+    listStats.style.paddingBottom = '10px'
+}
+
+
+
+listItem.append(ulStats)
+
 // <ul class="cards">
 const ul = document.querySelector('.cards')
 
 // append the <li> onto the <ul>
 ul.append(listItem)
 
-const hp = document.createElement('HP')
-const attack = document.createElement('ATTACK')
-const defense = document.createElement('DEFENSE')
-const specialAttack = document.createElement('SPECIAL-ATTACK')
-const specialDefense = document.createElement('SPECIAL-DEFENSE')
-const speed = document.createElement('SPEED')
-console.log(pokemon.stats[0].stat.name)
+
+}
+
+
+
+
+
+
+// console.log(pokemon.stats[0].base_stat)
 //You can start simple and just render a single 
 //pokemon card from the first element
 console.log(data[0]);
